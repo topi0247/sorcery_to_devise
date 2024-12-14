@@ -1,0 +1,31 @@
+<div class="max-w-7xl mx-auto px-4 py-6">
+    <h2 class="text-2xl font-bold mb-6 text-gray-800">ユーザー情報の編集</h2>
+
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <%= form_with @user, class: "space-y-6" do |f| %>
+
+        <!-- 名前入力フィールド -->
+        <div>
+            <%= f.label :name, "名前", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.text_field :name, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <!-- メールアドレス入力フィールド -->
+        <div>
+            <%= f.label :email, "メールアドレス", class: "block text-sm font-medium text-gray-700" %>
+            <%= f.email_field :email, class: "mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" %>
+        </div>
+
+        <!-- 更新ボタン -->
+        <div class="flex justify-start">
+            <%= f.submit "更新", class: "bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500" %>
+        </div>
+
+        <% end %>
+
+        <!-- 戻るリンク -->
+        <div class="mt-4">
+            <%= link_to "戻る", users_path, class: "text-indigo-600 hover:underline" %>
+        </div>
+    </div>
+</div>

@@ -9,9 +9,19 @@ class UsersController < ApplicationController
 
   def create; end
 
-  def edit; end
+  def edit
+    @user = User.find(params[:id])
+  end
 
-  def destroy; end
+  def destroy
+    @user = User.find(params[:id])
+    if @user.destroy
+      redirect_to users_path, success: 'ユーザーを削除できました'
+    else
+      flash.now[:danger] = 'ユーザーの削除に失敗しました'
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
   private
 

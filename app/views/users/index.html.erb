@@ -26,7 +26,7 @@
                     <!-- 編集ボタンと削除ボタン -->
                     <td class="px-6 py-4 whitespace-nowrap text-right">
                         <%= link_to "編集", edit_user_path(user), class: "inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-1 px-3 rounded mr-2" %>
-                        <%= link_to "削除", user_path(user), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded" %>
+                        <%= link_to "削除", user_path(user), data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "inline-block bg-red-500 hover:bg-red-600 text-white font-semibold py-1 px-3 rounded" %>
                     </td>
                 </tr>
                 <% end %>

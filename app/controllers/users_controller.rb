@@ -9,10 +9,29 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create; end
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      auto_login(@user)
+      redirect_to users_path, success: 'ユーザーを登録できました'
+    else
+      flash.now[:danger] = 'ユーザーの登録に失敗しました'
+      render :new, status: :unprocessable_entity
+    end
+  end
 
   def edit
     @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to users_path, success: 'ユーザーを更新できました'
+    else
+      flash.now[:danger] = 'ユーザーの更新に失敗しました'
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy

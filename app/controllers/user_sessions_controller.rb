@@ -5,9 +5,21 @@ class UserSessionsController < ApplicationController
     @user = User.new
   end
 
-  def create; end
+  def create
+    email = user_params[:email]
+    password = user_params[:password]
+    if login(email, password)
+      redirect_to users_path, success: 'ログインしました'
+    else
+      flash.now[:danger] = 'ログインに失敗しました'
+      render :new, status: :unprocessable_entity
+    end
+  end
 
-  def destroy; end
+  def destroy
+    logout
+    redirect_to login_path, success: 'ログアウトしました'
+  end
 
   private
 

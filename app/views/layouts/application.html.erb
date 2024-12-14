@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Myapp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -8,9 +9,34 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-  </head>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body class="bg-gray-100 text-gray-900">
+    <div class="min-h-screen flex flex-col">
+        <!-- ナビゲーションバー -->
+        <nav class="bg-white shadow-md">
+            <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+                <div class="text-lg font-semibold text-indigo-600">
+                    <%= link_to "My App", root_path, class: "hover:text-indigo-800" %>
+                </div>
+                <div>
+                    <% if logged_in? %>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-gray-700 hover:text-gray-900" %>
+                    <% else %>
+                    <%= link_to "ログイン", new_user_session_path, class: "text-gray-700 hover:text-gray-900" %>
+                    <% end %>
+                </div>
+            </div>
+        </nav>
+
+        <!-- フラッシュメッセージのパーシャル -->
+        <%= render "shared/flash_message" %>
+
+        <!-- コンテンツエリア -->
+        <main class="flex-grow max-w-7xl mx-auto p-4">
+            <%= yield %>
+        </main>
+    </div>
+</body>
+
 </html>
